@@ -1,0 +1,27 @@
+# Use yarn.lock instead
+package-lock.json
+
+# Dependency directories
+node_modules
+
+# Environment variables
+.env
+
+# Database
+config/db.json
+
+# Optional npm cache directory
+.npm
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Mac DS_Store Files
+.DS_Store
