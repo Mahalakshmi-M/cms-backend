@@ -13,7 +13,7 @@ Boilerplate/Generator/Starter Project for building RESTful APIs and microservice
  - Logging with [morgan](https://github.com/expressjs/morgan)
  - Error handler with [rollbar](https://rollbar.com/)
  - Tests with [jest](https://jestjs.io/) and [supertest](https://github.com/visionmedia/supertest)
- - Express + Sequelize ([sequelize](https://sequelize.org/master/index.html))
+ - Express + Objection ([knex](https://vincit.github.io/objection.js/guide/installation.html))
  - Consistent coding styles with [editorconfig](http://editorconfig.org)
  - Continuous integration support with [circleci](https://circleci.com/)
  - Authentication and Authorization with [passport](http://www.passportjs.org/)
