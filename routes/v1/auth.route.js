@@ -1,15 +1,13 @@
-'use strict'
-
-const router = require('express').Router()
+const router = require('express').Router();
 const {
   postLogin,
-  postRegister
-} = require('../../controllers/auth.controller')
+  postRegister,
+} = require('../../controllers/auth.controller');
 
 router.route('/login')
-  .post(postLogin)
+  .post(postLogin);
 
 router.route('/register')
-  .post(postRegister)
+  .post(postRegister);
 
-module.exports = router
+module.exports = router;

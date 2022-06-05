@@ -29,19 +29,24 @@ const postLogin = (req, res, next) => {
 }
 
 const postRegister = async (req, res, next) => {
-  const props = req.body.user
+  const props = req.body.user;
   console.log(props);
-  let user = await User.query()
-  .where({ username: props.username });
-  if(user) {
-    return next(createError({
-      status: CONFLICT,
-      message: 'Username already exists'
+  //return User.create(props);
+  User.findOne({ username: props.username })
+    .then(user => {
+      if (user) return next(createError({
+        status: CONFLICT,
+        message: 'Username already exists'
+      }))
+
+      return User.create(props)
+    })
+    .then(user => res.json({
+      ok: true,
+      message: 'Registration successful',
+      user
     }))
-  }else {
-   return User.insert(props);
-  }
-  
+    .catch(next)
 }
 
 module.exports = {
