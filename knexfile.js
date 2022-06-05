@@ -3,12 +3,18 @@ module.exports = {
     client: 'postgresql',
     useNullAsDefault: true,
     connection: {
-      filename: '../config/db.json',
-    },
+      host: 'localhost',
+      database: 'cms',
+      user: 'postgres',
+      password: 'root',
+      port: '5432',
+    }, 
     pool: {
-      afterCreate: (conn, cb) => {
-        conn.run('PRAGMA foreign_keys = ON', cb);
-      },
+      min: 0,
+      max: 10
+    },
+    migrations: {
+      tableName: 'KnexMigrations',
     },
   },
 

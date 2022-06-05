@@ -6,7 +6,7 @@ const logSymbols = require("log-symbols");
 const app = require("./config/express");
 const { port, env } = require("./config/vars");
 const Knex = require('knex');
-const knexConfig = require('/knexfile');
+const knexConfig = require('./knexfile');
 const { Model, ForeignKeyViolationError, ValidationError } = require('objection');
 
 const success = chalk.bold.green;

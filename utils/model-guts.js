@@ -38,7 +38,7 @@ module.exports = ({
       if (!Array.isArray(results)) return results
 
       return results[0]
-    })
+  })
 
   const findById = id => knex.select(selectableProps)
     .from(tableName)

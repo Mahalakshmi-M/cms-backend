@@ -10,12 +10,12 @@ const {
   deleteUser
 } = require('../../controllers/user.controller')
 
-router.route('/users')
+router.route('/')
   //.authorize()
   .post(postUsers)
   .get(getUsers)
 
-router.route('/users/:id')
+router.route('/:id')
   //.authorize()
   .get(getUser)
   .put(putUser)
