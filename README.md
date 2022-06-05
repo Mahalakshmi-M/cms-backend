@@ -14,8 +14,6 @@ Boilerplate/Generator/Starter Project for building RESTful APIs and microservice
  - Error handler with [rollbar](https://rollbar.com/)
  - Tests with [jest](https://jestjs.io/) and [supertest](https://github.com/visionmedia/supertest)
  - Express + Objection ([knex](https://vincit.github.io/objection.js/guide/installation.html))
- - Consistent coding styles with [editorconfig](http://editorconfig.org)
- - Continuous integration support with [circleci](https://circleci.com/)
  - Authentication and Authorization with [passport](http://www.passportjs.org/)
  - Uses [helmet](https://github.com/helmetjs/helmet) to set some HTTP headers for security
  - Load environment variables from .env files with [dotenv](https://github.com/motdotla/dotenv)
