@@ -15,7 +15,7 @@ const postUsers = (req, res, next) => {
 }
 
 const getUsers = (req, res, next) => {
-  User.findAll()
+  UserService.findAll()
     .then(users => res.json({
       ok: true,
       message: 'Users found',

@@ -30,3 +30,8 @@ exports.verify = async (username, password) => {
     return user;
   }
 };
+
+exports.findAll = async () => {
+  const users = await User.query();
+  return users;
+}
