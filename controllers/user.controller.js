@@ -51,7 +51,7 @@ const putUser = (req, res, next) => {
 const deleteUser = (req, res, next) => {
   const userId = req.params.id
 
-  User.destroy(userId)
+  UserService.destroy(userId)
     .then(deleteCount => res.json({
       ok: true,
       message: `User '${ userId }' deleted`,

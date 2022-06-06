@@ -1,7 +1,5 @@
-const axios = require('axios');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
-const knex = require('../knex');
 
 exports.create = async (data) => {
   const hashPassword = (password) => bcrypt.hash(password, 10);
@@ -44,4 +42,9 @@ exports.findById = async (id) => {
 exports.update = async (id, data) => {
   const results = await User.query().patch(data).where({ id: id });
   return results;
+}
+
+exports.destroy = async (id) => {
+  const result = await User.query().findById(id).delete();
+  return result;
 }

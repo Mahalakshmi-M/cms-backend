@@ -1,6 +1,8 @@
 'use strict'
+
 const UserService = require('../services/user');
-const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+
 const {
   createError,
   BAD_REQUEST,
@@ -16,11 +18,14 @@ const postLogin = (req, res, next) => {
     status: BAD_REQUEST,
     message: '`username` + `password` are required fields'
   }))
+  const accessToken = jwt.sign({ user: req.body }, process.env.JWT_SECRET);
 
   UserService.verify(username, password)
-    .then(user => res.json({
+    .then(user => 
+      res.json({
       ok: true,
       message: 'Login successful',
+      token: accessToken,
       user
     }))
     .catch(err => next(createError({
