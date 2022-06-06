@@ -6,6 +6,7 @@ const postPosts = (req, res, next) => {
   const props = req.body;
   const url = req.protocol + "://" + req.get("host");
   req.body.image_url = url + "/images/" + req.file.filename; 
+  req.body.user_id = req.user[0].id;
   PostService.create(props)
     .then(post => res.json({
       ok: true,
