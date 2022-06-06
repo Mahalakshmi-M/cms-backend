@@ -1,11 +1,11 @@
 'use strict'
 
-const { User } = require('../models/user')
+const UserService = require('../services/user');
 
 const postUsers = (req, res, next) => {
-  const props = req.body.user
+  const props = req.body
 
-  User.create(props)
+  UserService.create(props)
     .then(user => res.json({
       ok: true,
       message: 'User created',

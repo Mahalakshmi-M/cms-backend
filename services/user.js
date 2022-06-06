@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const knex = require('../knex');
 
-
-
 exports.create = async (data) => {
   const hashPassword = (password) => bcrypt.hash(password, 10);
   const password = await hashPassword(data.password)
