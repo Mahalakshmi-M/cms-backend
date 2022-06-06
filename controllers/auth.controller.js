@@ -1,10 +1,11 @@
 'use strict'
-
-const { User } = require('../models/user');
+const UserService = require('../services/user');
+const User = require('../models/user');
 const {
   createError,
   BAD_REQUEST,
-  UNAUTHORIZED
+  UNAUTHORIZED,
+  CONFLICT
 } = require('../utils/error_helper')
 
 const postLogin = (req, res, next) => {
@@ -29,11 +30,19 @@ const postLogin = (req, res, next) => {
 }
 
 const postRegister = async (req, res, next) => {
-  const props = req.body;
-  console.log(props);
-  User.query().insert({
-    props,
+  UserService.findOne({username: req.body.username}).then(user => {
+    if (user) return next(createError({
+      status: CONFLICT,
+      message: 'Username already exists'
+    }));
+    return UserService.create(req.body);
   })
+  .then(user => res.json({
+    ok: true,
+    message: 'Registration successful',
+    user
+  }))
+  .catch(next);
 }
 
 module.exports = {
