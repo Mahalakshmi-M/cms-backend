@@ -35,3 +35,13 @@ exports.findAll = async () => {
   const users = await User.query();
   return users;
 }
+
+exports.findById = async (id) => {
+  const results = await User.query().where({ id: id });
+  return results;
+}
+
+exports.update = async (id, data) => {
+  const results = await User.query().patch(data).where({ id: id });
+  return results;
+}

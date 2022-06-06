@@ -25,9 +25,8 @@ const getUsers = (req, res, next) => {
 }
 
 const getUser = (req, res, next) => {
-  const userId = req.params.id
-
-  User.findById(userId)
+  const userId = req.params.id;
+  UserService.findById(userId)
     .then(user => res.json({
       ok: true,
       message: 'User found',
@@ -37,10 +36,10 @@ const getUser = (req, res, next) => {
 }
 
 const putUser = (req, res, next) => {
-  const userId = req.params.id
-  const props = req.body.user
+  const userId = req.params.id;
+  const props = req.body;
 
-  User.update(userId, props)
+  UserService.update(userId, props)
     .then(user => res.json({
       ok: true,
       message: 'User updated',
