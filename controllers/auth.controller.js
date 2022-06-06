@@ -9,15 +9,15 @@ const {
 } = require('../utils/error_helper')
 
 const postLogin = (req, res, next) => {
-  const username = String(req.body.username)
-  const password = String(req.body.password)
+  const username = String(req.body.username);
+  const password = String(req.body.password);
 
   if (!username || !password) next(createError({
     status: BAD_REQUEST,
     message: '`username` + `password` are required fields'
   }))
 
-  User.verify(username, password)
+  UserService.verify(username, password)
     .then(user => res.json({
       ok: true,
       message: 'Login successful',

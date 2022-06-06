@@ -1,6 +1,8 @@
 const axios = require('axios');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const knex = require('../knex');
+
 
 
 exports.create = async (data) => {
@@ -19,20 +21,14 @@ exports.findOne = async (query) => {
 }
 
 exports.verify = async (username, password) => {
-  const verifyPassword = (password, hash) => bcrypt.compare(password, hash);
   const matchErrorMsg = 'Username or password do not match'
-    knex.select()
-      .from('users')
-      .where({ username })
-      .timeout(guts.timeout)
-      .then((user) => {
-        if (!user) throw matchErrorMsg;
-
-        return user;
-      })
-      .then((user) => Promise.all([user, verifyPassword(password, user.password)]))
-      .then(([user, isMatch]) => {
-        if (!isMatch) throw matchErrorMsg;
-        return user;
-      });
+  const user = await this.findOne({username: username});
+  if(!user){
+    throw matchErrorMsg;
+  }else {
+    const verifyPassword = (password, hash) => bcrypt.compare(password, hash);
+    const isMatch = await verifyPassword(password, user.password);
+    if (!isMatch) throw matchErrorMsg;
+    return user;
+  }
 };
