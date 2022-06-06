@@ -1,8 +1,5 @@
 const { Model } = require('objection');
-const Knex = require('knex');
-const knexConfig = require('../knexfile');
-
-const knex = Knex(knexConfig.development);
+const knex = require('../knex');
 Model.knex(knex);
 
 class User extends Model {
