@@ -31,22 +31,9 @@ const postLogin = (req, res, next) => {
 const postRegister = async (req, res, next) => {
   const props = req.body.user;
   console.log(props);
-  //return User.create(props);
-  User.findOne({ username: props.username })
-    .then(user => {
-      if (user) return next(createError({
-        status: CONFLICT,
-        message: 'Username already exists'
-      }))
-
-      return User.create(props)
-    })
-    .then(user => res.json({
-      ok: true,
-      message: 'Registration successful',
-      user
-    }))
-    .catch(next)
+  User.query().insert({
+    props,
+  })
 }
 
 module.exports = {
