@@ -2,10 +2,10 @@
 
 const PostService = require('../services/post');
 
-
 const postPosts = (req, res, next) => {
   const props = req.body;
-  console.log(props);
+  const url = req.protocol + "://" + req.get("host");
+  req.body.image_url = url + "/images/" + req.file.filename; 
   PostService.create(props)
     .then(post => res.json({
       ok: true,
@@ -39,7 +39,11 @@ const getPost = (req, res, next) => {
 const putPost = (req, res, next) => {
   const postId = req.params.id;
   const props = req.body;
-
+  let image_url = req.body.image_url;
+  if (req.file) {
+    const url = req.protocol + "://" + req.get("host");
+    image_url = url + "/images/" + req.file.filename;
+  }
   PostService.update(postId, props)
     .then(post => res.json({
       ok: true,

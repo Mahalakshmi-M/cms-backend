@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {authorize}  = require('../../middlewares/auth');
+const extractFile = require("../../middlewares/file");
+
 
 const {
   postPosts,
@@ -11,7 +13,7 @@ const {
 } = require('../../controllers/post.controller');
 
 router.route('/')
-  .post(authorize(), postPosts)
+  .post(authorize(), extractFile, postPosts)
   .get(authorize(), getPosts);
 
 router.route('/:id')

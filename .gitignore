@@ -3,6 +3,7 @@ package-lock.json
 
 # Dependency directories
 node_modules
+images
 
 # Environment variables
 .env
