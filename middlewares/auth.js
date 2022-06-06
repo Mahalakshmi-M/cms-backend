@@ -3,6 +3,7 @@ const httpStatus = require('http-status');
 const APIError = require('../utils/APIError');
 
 const handleJWT = (req, res, next) => async (err, user, info) => {
+  console.log('console.log(user);');
     const error = err || info;
     const logIn = Promise.promisify(req.logIn);
     const apiError = new APIError({
@@ -15,6 +16,7 @@ const handleJWT = (req, res, next) => async (err, user, info) => {
         if (error || !user) throw error;
         await logIn(user, { session: false });
     } catch (e) {
+      console.log(e);
         return next(apiError);
     }
 

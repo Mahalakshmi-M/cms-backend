@@ -2,9 +2,10 @@
 
 const PostService = require('../services/post');
 
-const postPosts = (req, res, next) => {
-  const props = req.body
 
+const postPosts = (req, res, next) => {
+  const props = req.body;
+  console.log(props);
   PostService.create(props)
     .then(post => res.json({
       ok: true,

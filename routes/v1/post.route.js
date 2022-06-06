@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { authorize } = require('../../middlewares/auth');
+const {authorize}  = require('../../middlewares/auth');
 
 const {
   postPosts,
@@ -8,17 +8,15 @@ const {
   getPost,
   putPost,
   deletePost
-} = require('../../controllers/user.controller');
+} = require('../../controllers/post.controller');
 
 router.route('/')
-  .authorize()
-  .post(postPosts)
-  .get(getPosts);
+  .post(authorize(), postPosts)
+  .get(authorize(), getPosts);
 
 router.route('/:id')
-  .authorize()
-  .get(getPost)
-  .put(putPost)
-  .delete(deletePost);
+  .get(authorize(), getPost)
+  .put(authorize(), putPost)
+  .delete(authorize(), deletePost);
 
 module.exports = router;

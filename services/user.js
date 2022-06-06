@@ -34,6 +34,11 @@ exports.findAll = async () => {
   return users;
 }
 
+exports.findByUserName = async(username) => {
+  const results = await User.query().where({ username: username });
+  return results;
+}
+
 exports.findById = async (id) => {
   const results = await User.query().where({ id: id });
   return results;
