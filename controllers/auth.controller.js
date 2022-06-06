@@ -29,7 +29,7 @@ const postLogin = (req, res, next) => {
 }
 
 const postRegister = async (req, res, next) => {
-  const props = req.body.user;
+  const props = req.body;
   console.log(props);
   User.query().insert({
     props,
